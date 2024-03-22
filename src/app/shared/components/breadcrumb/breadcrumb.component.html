@@ -1,0 +1,28 @@
+<div class="breadcrumb-main">
+  <div class="row">
+    <div class="col">
+      <div class="breadcrumb-title export-button m-l-10 breadcrumb-set-button">
+        <button *ngIf="backPath" mat-mini-fab color="primary">
+          <mat-icon class="col-white" matTooltip="BACK" (click)="cancel()">keyboard_backspace</mat-icon>
+        </button> &nbsp;&nbsp;
+        <h4 class="page-title">{{title}} &nbsp;&nbsp;
+          <mat-slide-toggle *ngIf="generatecontrol === true" color="primary" [(ngModel)]="toggle"
+            (change)="onToggleChange($event)">
+            <span class="togglefontbold">Active Flag</span>
+          </mat-slide-toggle>
+        </h4>
+      </div>
+    </div>
+    <div class="col breadcrumb-col">
+      <ul class="breadcrumb-list">
+        <li class="breadcrumb-item bcrumb-1">
+          <a [routerLink]="'/dashboard'">
+            <app-feather-icons [icon]="'home'" [class]="'breadcrumb-icon'"></app-feather-icons>
+          </a>
+        </li>
+        <li class="breadcrumb-item" *ngFor="let item of items">{{item}}</li>
+        <li class="breadcrumb-item active">{{active_item}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

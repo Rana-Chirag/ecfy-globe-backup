@@ -1,0 +1,641 @@
+/*
+ *  Document   : style.css
+ *  Author     : RedStar Template
+ *  Description: This is a main style scss file for import all scss files.
+ *
+ *
+ *  Structure (with shortcodes):
+                 [1. Common ]
+                 [2. Fonts ]
+                 [3. Components ]
+                 [4. Apps]
+                 [5. Pages ]
+                 [6. Pugins ]
+                 [7. UI ]
+                 [8. Browser ]
+
+
+/*                 [1. Common ]                   			*/
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+/* Importing Bootstrap SCSS file. */
+@import "bootstrap/scss/bootstrap";
+@import "perfect-scrollbar/css/perfect-scrollbar.css";
+@import "common/_variables";
+@import "common/_mixins";
+@import "common/_customanimate.scss";
+@import "common/_general.scss";
+@import "common/_demo.scss";
+@import "common/_helpers.scss";
+@import "common/_media.scss";
+@import "common/_animation.scss";
+@import "common/_rtl.scss";
+
+/*                 [2. Fonts]                   				*/
+// @import "fonts/_material.scss";// @import "fonts/_material.scss";
+@import "fonts/fontawesome/fontawesome.scss";
+@import "fonts/fontawesome/regular.scss";
+@import "fonts/fontawesome/solid.scss";
+@import "fonts/fontawesome/brands.scss";
+
+/*                 [3. Components ]                   		*/
+@import "components/_breadcrumbs.scss";
+@import "components/_button.scss";
+@import "components/_checkboxradio.scss";
+@import "components/_dropdownmenu.scss";
+@import "components/_feed.scss";
+@import "components/_formcomponents.scss";
+@import "components/_menucomponents.scss";
+@import "components/_infobox.scss";
+@import "components/_inputformgroup.scss";
+@import "components/_labels.scss";
+@import "components/_leftsidebaroverlay.scss";
+@import "components/_navbar";
+@import "components/_navtabs.scss";
+@import "components/_noticeboard.scss";
+@import "components/_rightsidebar.scss";
+@import "components/_searchbar.scss";
+@import "components/_switch.scss";
+@import "components/_thumbnails.scss";
+@import "components/_todo.scss";
+@import "components/_settingSidebar.scss";
+@import "components/CommonViewPrint.scss";
+@import "components/multileveltable";
+
+/*                 [4. Apps]                   				*/
+@import "apps/_calendar.scss";
+@import "apps/_chat.scss";
+@import "apps/_contactlist.scss";
+@import "apps/_contactgrid.scss";
+@import "apps/_dragdrop.scss";
+@import "apps/_task.scss";
+
+/*                 [5. Pages ]                   				*/
+@import "pages/_dashboard.scss";
+@import "pages/_inbox.scss";
+@import "pages/_pricing.scss";
+@import "pages/_profile.scss";
+@import "pages/_timeline.scss";
+@import "pages/_extra_pages.scss";
+@import "pages/_auth.scss";
+@import "pages/_ordernoviewprint.scss";
+@import "pages/_loadlanviewprint.scss";
+@import "pages/_tripSheetviewprint.scss";
+@import "pages/_drsviewprint.scss";
+@import "pages/_divisionwise.scss";
+@import "pages/_othercharge.scss";
+@import "pages/tripview.scss";
+
+/*                 [6. Pugins ]                   				*/
+@import "plugins/_carousel.scss";
+@import "plugins/_charts.scss";
+@import "plugins/_formwizard.scss";
+@import "plugins/_imagegallery.scss";
+@import "plugins/_maps.scss";
+@import "plugins/_tables.scss";
+
+/*                 [7. UI ]                   */
+@import "ui/_alerts.scss";
+@import "ui/_badgelistgroupitem.scss";
+@import "ui/_buttons.scss";
+@import "ui/_card.scss";
+@import "ui/_collapse.scss";
+@import "ui/_dialogs.scss";
+@import "ui/_expansion.scss";
+@import "ui/_mediaobject.scss";
+@import "ui/_modals.scss";
+@import "ui/_pageloader.scss";
+@import "ui/_pagination.scss";
+@import "ui/_panels.scss";
+@import "ui/_preloaders.scss";
+@import "ui/_progressbars.scss";
+@import "ui/_slider.scss";
+@import "ui/_snackbar.scss";
+@import "ui/_tabs.scss";
+@import "ui/_tooltippopovers.scss";
+@import "ui/_ckeditor.scss";
+
+/*                 [8. Browser ]                   			*/
+@import "browser/_ie10.scss";
+@import "browser/_ie11.scss";
+
+// Declare the primary color variable
+$primary-color: #3f51b5;
+
+.tablewidth {
+  max-width: 80px !important;
+}
+
+.tablewidthpincode {
+  max-width: 200px !important;
+}
+
+.tablewidthCluster {
+  min-width: 100px !important;
+}
+
+.tablewidthDriver {
+  min-width: 160px !important;
+}
+
+.tablewidthGeneral {
+  min-width: 100px !important;
+}
+
+th.mat-header-cell {
+  background: #ebebee;
+}
+
+.example-tree-invisible {
+  display: none;
+}
+
+.example-tree ul,
+.example-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+/*
+   * This padding sets alignment of the nested nodes.
+   */
+.example-tree .mat-nested-tree-node div[role="group"] {
+  padding-left: 40px;
+}
+
+/*
+   * Padding for leaf nodes.
+   * Leaf nodes need to have padding so as to align with other non-leaf nodes
+   * under the same parent.
+   */
+.example-tree div[role="group"] > .mat-tree-node {
+  padding-left: 40px;
+}
+
+.example-tree {
+  margin-top: 29 !important;
+  margin-left: 0 !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .example-tree {
+    margin-top: 0 !important;
+    margin-left: 0 !important;
+  }
+  .custom-input {
+    width: 50px;
+  }
+  .Rangedate {
+    right: 0 !important;
+    position: inherit !important;
+  }
+
+  .searchsym {
+    margin-top: -4px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .Rangedate {
+    right: 0 !important;
+    position: inherit !important;
+  }
+
+  .searchsym {
+    margin-top: 10px;
+  }
+}
+
+.snackbar-success {
+  background-color: rgba(24, 206, 15, 0.8) !important;
+  color: #ffffff !important;
+}
+
+.snackbar-info {
+  background-color: rgba(44, 168, 255, 0.8) !important;
+  color: #ffffff !important;
+}
+
+.snackbar-warning {
+  background-color: rgba(255, 230, 0, 0.8) !important;
+  color: #ffffff !important;
+}
+
+.snackbar-danger {
+  background-color: rgba(255, 0, 0, 0.8) !important;
+  color: #ffffff !important;
+}
+
+mat-slide-toggle {
+  margin-top: 10px;
+}
+
+.togglefontbold {
+  font-weight: 600;
+}
+
+.fontbold {
+  font-weight: 700;
+}
+.iconcolor {
+  color: white;
+}
+
+.custom-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-pedding {
+  padding-bottom: 50px;
+  padding-top: 30px;
+}
+
+.tblborder {
+  border: 1px solid #e5e2e2 !important;
+  padding-left: 10px !important;
+  border-bottom: none !important;
+}
+
+.BcSeries {
+  width: 50%;
+}
+
+.my-fab {
+  width: 20px;
+  height: 20px;
+  line-height: 14px;
+  font-size: 14px;
+
+  &::ng-deep .mat-button-wrapper {
+    line-height: 14px;
+    padding: 0;
+
+    .mat-icon {
+      font-size: 14px;
+      padding-right: 4px;
+      padding-top: 4px;
+    }
+  }
+}
+
+.btndocket {
+  margin-left: 17%;
+  margin-top: -3%;
+}
+
+body {
+  background: #fafafa;
+}
+
+.order-card {
+  color: #fff;
+}
+
+.bg-c-blue {
+  background: linear-gradient(45deg, #4099ff, #73b4ff);
+}
+
+.bg-c-green {
+  background: linear-gradient(45deg, #2ed8b6, #59e0c5);
+}
+
+.bg-c-yellow {
+  background: linear-gradient(45deg, #ffb64d, #ffcb80);
+}
+
+.bg-c-pink {
+  background: linear-gradient(45deg, #ff5370, #ff869a);
+}
+
+.card {
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+  box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+  border: none;
+  margin-bottom: 30px;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.card .card-block {
+  padding: 25px;
+}
+
+.order-card i {
+  font-size: 26px;
+}
+
+.card-shape {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.card-icon {
+  font-size: 65px;
+}
+
+.f-left {
+  float: left;
+}
+
+.f-right {
+  float: right;
+}
+
+.marquee {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  bottom: -5;
+  position: absolute;
+}
+
+.mat-input-element:disabled,
+.mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after {
+  color: #2d353c !important;
+}
+
+header {
+  height: 100px;
+  line-height: 25px;
+  text-align: center;
+  background: #303e49;
+}
+
+button,
+input,
+select,
+a {
+  outline: none !important;
+  font-size: none !important;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.timepicker-dial__control {
+  font-size: 50px !important;
+}
+
+.custom-modal-size .modal-dialog {
+  max-width: 800px;
+  /* Adjust the width as per your requirement */
+}
+
+.card {
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+  box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+  border: none;
+  margin-bottom: 30px;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.card .card-block {
+  padding: 25px;
+}
+
+.verticalScrollbar {
+  overflow-y: auto;
+  height: 400px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.black {
+  color: rgb(87, 83, 83);
+}
+
+/* Custom loader styles */
+.customerloader {
+  /* Custom styles for the loader */
+  .loader-container {
+    width: 150px;
+    /* Set the desired width */
+    height: 150px;
+    /* Set the desired height */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+
+  .loader {
+    width: 100%;
+    /* Make the loader fill its container */
+    height: 100%;
+  }
+}
+
+.paddingdiv {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.large-icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Align to the center horizontally */
+  margin-bottom: 20px;
+  /* Add margin to create space below the search bar */
+  margin-top: 26px;
+
+  .search-bar-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    font-size: 14px;
+    flex: 1;
+    max-width: 300px;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      /* Use the primary color variable for the border when focused */
+    }
+  }
+
+  .search-bar-button {
+    padding: 8px 16px;
+    background-color: $primary-color;
+    /* Use the primary color variable for the background */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+      /* Darken the primary color on hover */
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.textCenter {
+  display: flex;
+  justify-content: center !important;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+/* Custom CSS for adjusting container width */
+.custom-container {
+  width: 33%;
+  /* Adjust the width to your preference (e.g., 80%) */
+  margin: 0 auto;
+  /* Center the container horizontally */
+}
+
+.margincenter {
+  margin-left: 349px;
+}
+
+/* Your component's CSS file or global styles */
+.autocomplete-list {
+  background-color: white;
+  /* Set the background color to white */
+  border: 1px solid #ccc;
+  /* Add a border for separation (optional) */
+  list-style-type: none;
+  /* Remove bullet points (optional) */
+  padding: 0;
+  /* Remove default padding (optional) */
+  margin: 0;
+  /* Remove default margin (optional) */
+  position: absolute;
+  /* Position the dropdown absolutely */
+  width: 100%;
+  /* Set the width to match the input (optional) */
+  z-index: 1000;
+  /* Ensure it appears above other elements (optional) */
+}
+
+/* Your component's CSS file or global styles */
+/* Your component's CSS file or global styles */
+.custom-input {
+  /* Set the default width for larger screens */
+  width: 425px;
+  width: 500px;
+  /* Set the default height */
+  height: 40px;
+}
+
+/* Your component's CSS file or global styles */
+.custom-input::placeholder {
+  /* Set the desired width for the placeholder */
+  width: 200px;
+  /* Adjust the width as needed */
+  /* Add other styling properties as needed */
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Your component's CSS file or global styles */
+.custom-list-item {
+  margin-bottom: 5px;
+  /* Adjust the margin as needed to reduce spacing */
+  padding: 5px;
+  /* Adjust the padding as needed to reduce spacing */
+}
+
+/* Your component's CSS file or global styles */
+.google-autocomplete-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 101%;
+  border: 1px solid #ccc;
+  border-top: none;
+  // position: absolute;
+  background-color: white;
+  border-radius: 5px;
+  z-index: 1;
+  max-height: 208px;
+  overflow-y: auto;
+}
+
+.container-column {
+  gap: 4px;
+  display: flex;
+}
+
+.google-autocomplete-item {
+  padding: 12px 10px;
+  /* Adjust the padding to control vertical and horizontal spacing */
+  cursor: pointer;
+  transition: background-color 0.2s;
+  position: relative;
+  margin-top: -4px;
+}
+
+.google-autocomplete-item:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -10px;
+  /* Adjust the value to control the curve */
+  width: 10px;
+  height: 100%;
+  background-color: #ccc;
+  /* Background color for the border */
+  border-radius: 0 5px 5px 0;
+  /* Adjust the border-radius for the curve */
+  transform: translateY(-50%);
+}
+/* Apply styles when the screen width is less than or equal to 768px and the zoom level is greater than 1x */
+@media screen and (min-width: 768px) and (min-resolution: 1.1dppx) {
+  /* CSS styles to apply when the screen width is 872 pixels or wider */
+  /* Add your styles here */
+
+  // .custom-input {
+  //   width: 250px;
+  //   margin-left: -39px;
+  // }
+
+  .google-autocomplete-list {
+    // margin-left: -39px;
+    width: 118%;
+  }
+
+  // .globehide{
+  //   display:none!important;
+  //   }
+}
+.blur-effect {
+  filter: blur(5px); /* Adjust the pixel value for more or less blur */
+}

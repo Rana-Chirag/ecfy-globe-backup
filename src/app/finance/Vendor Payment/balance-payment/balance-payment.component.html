@@ -1,0 +1,99 @@
+<app-common-wrapper-webxpress [breadscrums]="breadScrums">
+    <div class="row">
+        <form [formGroup]="PaymentHeaderFilterForm">
+            <app-form-webxpress [form]="PaymentHeaderFilterForm" [FormTitle]="'Vendor ' + BillPaymentData.Vendor"
+                [formData]="jsonControlPaymentHeaderFilterArray" (functionCallEmitter)="functionCallHandler($event)"
+                [className]="'col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-1 '" (callFunction)="functionCallHandler($event)"
+                [showSaveAndCancelButton]="false">
+            </app-form-webxpress>
+        </form>
+        <div>
+            <div *ngIf="!isTableLode" class="d-flex justify-content-center align-items-center">
+                <!-- Bootstrap loader -->
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <div *ngIf="isTableLode">
+                <app-generic-table-v2 [dynamicControls]="dynamicControls" [columnHeader]="columnHeader"
+                    [tableData]="tableData" (functionCallEmitter)="functionCallHandler($event)" [metaData]="metaData"
+                    [FormTitle]="'THC List'" [menuItems]="menuItems" [Link]="linkArray" [staticField]="staticField"
+                    [TitleBoxData]="this.TotalAmountList" (onFlagChange)="selectCheckBox($event)"
+                    [onFlagChangeGetAll]="true">
+                </app-generic-table-v2>
+            </div>
+        </div>
+        <form [formGroup]="VendorBalanceTaxationTDSFilterForm">
+            <app-form-webxpress [form]="VendorBalanceTaxationTDSFilterForm" [FormTitle]="'TDS deduction'"
+                [formData]="jsonControlVendorBalanceTaxationTDSFilterArray"
+                (functionCallEmitter)="functionCallHandler($event)"
+                [className]="'col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-1'" (callFunction)="functionCallHandler($event)"
+                [showSaveAndCancelButton]="false">
+            </app-form-webxpress>
+        </form>
+
+        <form [formGroup]="VendorBalanceTaxationGSTFilterForm">
+            <app-form-webxpress [form]="VendorBalanceTaxationGSTFilterForm" [FormTitle]="'GST details'"
+                [formData]="jsonControlVendorBalanceTaxationGSTFilterArray"
+                (functionCallEmitter)="functionCallHandler($event)"
+                [className]="'col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-1'" (callFunction)="functionCallHandler($event)"
+                [showSaveAndCancelButton]="false">
+            </app-form-webxpress>
+        </form>
+
+        <form [formGroup]="DebitVoucherTaxationPaymentSummaryForm">
+            <app-form-webxpress [form]="DebitVoucherTaxationPaymentSummaryForm" [FormTitle]="'Payment Summary'"
+                [DisplayCheckbox]="true" [CheckBoxMessage]="'Round Off'"
+                [formData]="jsonControlDebitVoucherTaxationPaymentSummaryArray"
+                [className]="'col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-1'"
+                (functionCallEmitter)="functionCallHandler($event)" (callFunction)="functionCallHandler($event)"
+                [showSaveAndCancelButton]="false">
+            </app-form-webxpress>
+        </form>
+
+    </div>
+    <div class="row" *ngIf="IsModifyAction">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2 mt-2">
+            <div class="example-button-row  d-flex justify-content-end">
+
+                <button mat-raised-button color="primary" [disabled]="!VendorBalanceTaxationGSTFilterForm.valid ||
+                    tableData.length==0" (click)="BookVendorBill('',false,true)">Modify Vendor Bill</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="!IsModifyAction">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2 mt-2">
+            <div class="example-button-row  d-flex justify-content-end">
+                <button class="msr-3" mat-raised-button color="primary" [disabled]="!VendorBalanceTaxationGSTFilterForm.valid ||
+                        tableData.length==0" (click)="MakePayment()">Make Payment</button>
+                <button mat-button [disabled]="!VendorBalanceTaxationGSTFilterForm.valid ||
+                        tableData.length==0" (click)="BookVendorBill('',false,false)">Book Vendor Bill</button>
+            </div>
+        </div>
+    </div>
+</app-common-wrapper-webxpress>
+
+
+<style>
+    .hover {
+        text-decoration: underline;
+        font-weight: 700;
+        color: blue;
+        transition-duration: 0.5s;
+        border-radius: 50px;
+        cursor: pointer;
+    }
+
+    .hover:hover {
+        text-decoration: none;
+        color: white;
+        background-color: blue;
+    }
+
+    .flex-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>

@@ -1,0 +1,8 @@
+<app-common-wrapper-webxpress [breadscrums]="breadScrums">
+     <form [formGroup]="cnoteTableForm">
+          <app-form-webxpress [form]="cnoteTableForm" [FormTitle]="'Consignment Note GST Register Report'" [formData]="jsoncnoteFormArray"
+               (functionCallEmitter)="functionCallHandler($event)" (callFunction)="functionCallHandler($event)"
+               [showSaveButton]="true" [submit]="'Download'">
+          </app-form-webxpress>
+     </form>
+</app-common-wrapper-webxpress>

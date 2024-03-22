@@ -1,0 +1,50 @@
+<div mat-dialog-title style="display: flex;
+  justify-content: end;margin-bottom:10px;">
+    <button mat-icon-button (click)="Close()">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+<div class="body" style="max-height: 420px;">
+    <div class="col-12" style="padding: 0px;">
+        <form [formGroup]="THCAmountsDetailsForm">
+            <app-form-webxpress [form]="THCAmountsDetailsForm" [FormTitle]="'Vendor ' + BillPaymentData.Vendor"
+                [formData]="THCAmountsDetailsArray" (functionCallEmitter)="functionCallHandler($event)"
+                [className]="'col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-1 '" (callFunction)="functionCallHandler($event)"
+                [showSaveAndCancelButton]="false">
+            </app-form-webxpress>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-6" *ngIf="isAddForm">
+            <form [formGroup]=" THCAmountsADDForm">
+                <app-form-webxpress [form]="THCAmountsADDForm" [FormTitle]="'THC Amounts ADD (+)'"
+                    [formData]="THCAmountsADDArray" (functionCallEmitter)="functionCallHandler($event)"
+                    [className]="'col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1'"
+                    (callFunction)="functionCallHandler($event)" [showSaveAndCancelButton]="false">
+                </app-form-webxpress>
+            </form>
+        </div>
+        <div class="col-6" *ngIf="isLessForm">
+            <form [formGroup]="THCAmountsLESSForm">
+                <app-form-webxpress [form]="THCAmountsLESSForm" [formData]="THCAmountsLESSArray"
+                    (functionCallEmitter)="functionCallHandler($event)" [FormTitle]="'THC Amounts LESS (-)'"
+                    [className]="'col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1'"
+                    (callFunction)="functionCallHandler($event)" [showSaveAndCancelButton]="false">
+                </app-form-webxpress>
+            </form>
+        </div>
+    </div>
+    <form [formGroup]="THCAmountsForm">
+        <app-form-webxpress [form]="THCAmountsForm" [formData]="THCAmountsArray"
+            (functionCallEmitter)="functionCallHandler($event)" [FormTitle]="''"
+            [className]="'col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1'" (callFunction)="functionCallHandler($event)"
+            [showSaveAndCancelButton]="false">
+        </app-form-webxpress>
+    </form>
+
+    <div>
+        <button style="margin: 10px 0px;" type="button" mat-raised-button color="primary" (click)="submit()">
+            submit
+        </button>
+    </div>
+</div>

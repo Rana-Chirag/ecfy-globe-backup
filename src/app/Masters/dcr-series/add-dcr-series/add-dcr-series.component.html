@@ -1,0 +1,14 @@
+<app-common-wrapper-webxpress [breadscrums]="breadScrums" [backPath]="backPath">
+  <form [formGroup]="addDcrTableForm">
+    <app-form-webxpress [form]="addDcrTableForm" [formData]="jsonControlArray" [FormTitle]="'DCR Series'"
+      (functionCallEmitter)="functionCallHandler($event)" (callFunction)="functionCallHandler($event)"
+      [showSaveAndCancelButton]="false">
+    </app-form-webxpress>
+  </form>
+  <button type="button" mat-raised-button color="primary" (click)="saveData()" [disabled]="!addDcrTableForm.valid">
+   Save
+  </button>&nbsp;&nbsp;
+  <button type="button" mat-raised-button color="primary" *ngIf="addDcrTableForm.valid" (click)="allocate()">
+    Allocate
+  </button>
+</app-common-wrapper-webxpress>

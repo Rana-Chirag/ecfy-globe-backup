@@ -1,0 +1,294 @@
+<div class="row">
+    <div class="col-12" style="padding: 0px;">
+        <div class="card" style="margin-bottom: 6px;margin-right: 3px;margin-left: 3px;padding: 0px;">
+            <div class="body" style="padding: 0px;">
+                <div class="task-list">
+                    <div class="row" *ngIf="FormTitle">
+                        <div class="col">
+                            <h4 style="margin-top:10px;margin-left:10px; color: orange;font-weight: 500;"><mat-icon
+                                    style="padding-top:4px;">view_list</mat-icon>
+                                {{FormTitle}}
+                            </h4>
+                        </div>
+                        <div class="col d-flex justify-content-end">
+                            <div *ngFor="let box of TitleBoxData" style="text-align: center;margin-top:5px"
+                                class="msr-4 align-self-center">
+                                <h6 class="font-14 mb-1">{{box.title}}</h6>
+                                <p class="badge  shadow-style " [class]="box.class"
+                                    style="width: -webkit-fill-available; font-size: 16px !important;">
+                                    {{box.count}}
+                                </p>
+                            </div>
+                            <section *ngIf="DisplayCheckbox" class="example-section">
+                                <mat-slide-toggle (change)="OnChangeToggle($event)" color="primary">Calculate TDS at
+                                    line item &nbsp;</mat-slide-toggle>
+                            </section>
+                            <button *ngIf="DisplayAddNewButton" matTooltip="Add New Record" mat-stroked-button
+                                style="margin-top:10px;margin-bottom: 10px; margin-right:10px; " (click)="AddNew()"
+                                class="filter_btn">
+                                <mat-icon>add</mat-icon>
+                                Add New
+                            </button>
+                            <button *ngIf="DisplaySaveButton" matTooltip="Submit" mat-stroked-button
+                                style="margin-top:10px;margin-bottom: 10px; margin-right:10px; " (click)="Submit()"
+                                class="filter_btn">
+                                Submit
+                            </button>
+                        </div>
+                        <hr style="margin:0px">
+                    </div>
+                    <div [ngStyle]="{'display': showHeader ? 'block' : 'none'}" class="materialTableHeader"
+                        style="min-width:auto !important;">
+                        <div class="row">
+                            <div class="col-auto">
+                                <ul class="header-buttons-left ml-0 container-column">
+                                    <li class="dropdown m-l-20">
+                                        <label for="search-input"><i class="material-icons search-icon">search</i>
+                                        </label>
+                                        <input placeholder="Search" type="text" #filter
+                                            class="browser-default search-field" aria-label="Search box">
+                                    </li>
+                                    <li>
+                                        <div class="export-button m-l-10" *ngIf="dynamicControls" matTooltip="ADD">
+                                            <button *ngIf="!headercode && dynamicControls.add" mat-mini-fab
+                                                color="primary">
+                                                <mat-icon class="col-white" (click)="addNew()">add</mat-icon>
+                                            </button>
+                                            <button *ngIf="headercode && dynamicControls.add" mat-mini-fab
+                                                color="primary">
+                                                <mat-icon class="col-white" (click)="addNewGeneral()">add</mat-icon>
+                                            </button>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div *ngIf="refreshbtn" class="export-button m-l-10" matTooltip="REFRESH">
+                                            <button mat-mini-fab color="primary">
+                                                <mat-icon class="col-white" (click)="refresh()">refresh
+                                                </mat-icon>
+                                            </button>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div *ngIf="uploadComponent" class="export-button m-l-10"
+                                            matTooltip="Bulk Upload" (click)="onUploadClick()">
+                                            <button mat-mini-fab color="primary">
+                                                <mat-icon class="col-white">upload</mat-icon>
+                                            </button>
+                                        </div>
+                                    </li>
+                                    <li *ngIf="filterColumn">
+                                        <button type="button"
+                                            class="btn btn-warning btn-border-radius waves-effect msr-2"
+                                            (click)="openDialog()">
+                                            <i-feather style="width: 24px;height: 24px;color:white"
+                                                name="filter"></i-feather>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-auto ms-auto">
+                                <ul class="header-buttons">
+                                    <li *ngIf="dynamicControls.csv">
+                                        <div class="export-button m-l-10" matTooltip="CSV">
+                                            <img src="assets/images/icons/csv.png" alt="" (click)="ExportToCsv()" />
+                                        </div>
+                                    </li>
+                                    <li *ngIf="FilterButton">
+                                        <div>
+                                            <button mat-raised-button
+                                                (click)="functionHandle(FilterButton.functionName , {})"
+                                                color="primary">{{FilterButton.name}}</button>
+                                        </div>
+                                    </li>
+                                    <li *ngIf="EventButton">
+                                        <div>
+                                            <button mat-stroked-button style="margin-left:10px; "
+                                                (click)="functionHandle(EventButton.functionName , {})">
+                                                <mat-icon
+                                                    *ngIf="EventButton?.iconName">{{EventButton.iconName}}</mat-icon>
+                                                {{EventButton.name}}
+                                            </button>
+                                        </div>
+                                    </li>
+                                    <li *ngIf="HeaderMenuItems">
+                                        <button mat-stroked-button style="margin-left:10px; "
+                                            [matMenuTriggerFor]="matMenu" (click)="$event.stopPropagation()">
+                                            Actions
+                                        </button>
+
+                                        <mat-menu #matMenu="matMenu">
+                                            <button mat-menu-item *ngFor="let item of HeaderMenuItems"
+                                                (click)="handleMenuItemClick(item.label,item)">
+                                                {{ item.label }}
+                                            </button>
+                                        </mat-menu>
+                                    </li>
+                                    <li *ngFor="let box of boxData" style="text-align: center;">
+                                        <div class="msr-4 align-self-center">
+                                            <h6 class="font-14 mb-1">{{box.title}}</h6>
+                                            <p class="badge  shadow-style " [class]="box.class"
+                                                style="width: -webkit-fill-available; font-size: 16px !important;">
+                                                {{box.count}}
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Generic Table -->
+                    <div class="responsive_table">
+                        <mat-table [style]="TableStyle" [dataSource]="dataSource" matSort>
+                            <ng-container [matColumnDef]="tableData" *ngFor="let tableData of objectKeys(columnHeader)">
+                                <ng-container *ngIf="!metaData.noColumnSort.includes(tableData); else elseBlock">
+                                    <mat-header-cell [style]="columnHeader[tableData].Style" *matHeaderCellDef
+                                        mat-sort-header [class]="columnHeader[tableData].class">
+                                        {{columnHeader[tableData].Title}}
+                                    </mat-header-cell>
+                                </ng-container>
+                                <ng-template #elseBlock>
+                                    <mat-header-cell *matHeaderCellDef [class]="columnHeader[tableData].class"
+                                        [style]="columnHeader[tableData].Style">
+                                        {{columnHeader[tableData].Title}}
+                                        <mat-checkbox style="width: 0px; margin: 0px; padding: 0px;"
+                                            *ngIf="tableData === 'checkBoxRequired' && selectAllRequired"
+                                            color="primary" (change)="selectAll($event)" [(ngModel)]="AllChack"
+                                            [indeterminate]="someComplete()"
+                                            [disabled]="this.disbleCheckbox"></mat-checkbox>
+                                    </mat-header-cell>
+                                </ng-template>
+                                <mat-cell *matCellDef="let element" [style]="columnHeader[tableData].Style"
+                                    [class]="columnHeader[tableData].class">
+                                    <mat-checkbox style="width: 0px; margin: 0px; padding: 0px;"
+                                        *ngIf="tableData=='checkBoxRequired'" color="primary"
+                                        [(ngModel)]="element.isSelected" [disabled]="this.disbleCheckbox"
+                                        (change)="getCheckData($event)"></mat-checkbox>
+                                    <ng-container
+                                        *ngIf="Link && !shouldDisplayLink(tableData) && toggleArray && !toggleArray.includes(tableData) ">
+                                        <p style="text-decoration: none;">{{formatData(element[tableData], tableData )}}
+                                        </p>
+                                    </ng-container>
+                                    <ng-container *ngIf="staticField.includes(tableData)">
+                                        {{element[tableData]}}
+                                    </ng-container>
+                                    <ng-container *ngFor="let toggle of toggleArray">
+                                        <mat-slide-toggle *ngIf="tableData==toggle" color="primary"
+                                            (change)="isActive(element)" [(ngModel)]="element[tableData]">
+                                        </mat-slide-toggle>
+                                    </ng-container>
+                                    <a *ngIf="shouldDisplayLink(tableData)" class="pointer" color="rgba(0,0,0,.87)"
+                                        style="text-decoration: underline; color: rgba(0,0,0,.87);"
+                                        (click)="drillDownData(element, tableData)" (ngInit)="triggered = false">
+                                        {{ formatData(element[tableData], tableData) }}
+                                    </a>
+                                    <button mat-icon-button *ngIf="tableData=='actions'"
+                                        [matMenuTriggerFor]="menuItemFlag ? menu : null" (click)="editCall(element)"
+                                        (click)="$event.stopPropagation()" class="tbl-action-btn">
+                                        <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item *ngFor="let item of menuItems"
+                                            (click)="handleMenuItemClick(item.label,element)">
+                                            {{ item.label }}
+                                        </button>
+                                    </mat-menu>
+                                    <ng-container *ngIf="tableData === 'actionsItems'">
+                                        <button mat-icon-button [matMenuTriggerFor]="menuItemFlag ? actionsItems : null"
+                                            (click)="$event.stopPropagation()" class="tbl-action-btn">
+                                            <app-feather-icons [icon]="'edit'"
+                                                [class]="'tbl-fav-edit'"></app-feather-icons>
+                                        </button>
+
+                                        <mat-menu #actionsItems="matMenu">
+                                            <button mat-menu-item *ngFor="let item of getMenuItems(element.actions)"
+                                                (click)="handleMenuItemClick(item, element)">
+                                                {{ item.label }}
+                                            </button>
+                                        </mat-menu>
+                                    </ng-container>
+                                    <ng-container *ngIf="tableData === 'actionDelete'">
+                                        <button mat-icon-button (click)="Delete(element)">
+                                            <mat-icon style="color: rgb(59, 59, 59);">delete</mat-icon>
+                                        </button>
+                                    </ng-container>
+                                    <ng-container *ngIf="columnHeader[tableData]?.type === 'iconorvalue'">
+                                        <div *ngIf="element[columnHeader[tableData]?.Title]=='Add'">
+                                            <button mat-icon-button
+                                                (click)="functionHandle(columnHeader[tableData].functionName , element)">
+                                                <mat-icon>{{columnHeader[tableData].iconName}}</mat-icon>
+                                            </button>
+                                        </div>
+                                        <div *ngIf="element[columnHeader[tableData]?.Title]!='Add'">
+                                            {{element[columnHeader[tableData]?.Title]}}
+                                        </div>
+
+                                    </ng-container>
+                                    <ng-container *ngIf="columnHeader[tableData]?.type === 'Activetoggle'">
+                                        <mat-slide-toggle color="primary" [(ngModel)]="element[tableData]"
+                                            (change)="functionHandle(columnHeader[tableData].functionName , element)"></mat-slide-toggle>
+                                    </ng-container>
+                                    <ng-container *ngIf="columnHeader[tableData]?.type === 'iconClick'">
+                                        <button mat-icon-button
+                                            (click)="functionHandle(columnHeader[tableData].functionName , element)">
+                                            <mat-icon
+                                                style="color: #000000ec">{{columnHeader[tableData].iconName}}</mat-icon>
+                                        </button>
+                                    </ng-container>
+                                    <ng-container *ngIf="columnHeader[tableData]?.type === 'view'">
+                                        <app-feather-icons [icon]="'eye'" style="cursor: pointer"
+                                            [class]="'tbl-fav-edit'"
+                                            (click)="openImageDialog(element)"></app-feather-icons>
+                                    </ng-container>
+
+                                    <ng-container *ngIf="columnHeader[tableData]?.type === 'windowLink'">
+                                        <p class="windowLink"
+                                            (click)="functionHandle(columnHeader[tableData].functionName , element)">
+                                            {{element[tableData]}}</p>
+                                    </ng-container>
+
+                                    <ng-container *ngIf="columnHeader[tableData]?.type === 'Link'">
+                                        <p class="windowLink"
+                                            (click)="functionHandle(columnHeader[tableData].functionName , element)">
+                                            {{element[tableData]}}</p>
+                                    </ng-container>
+
+                                    <button mat-icon-button *ngIf="tableData=='view'" (click)="$event.stopPropagation()"
+                                        (click)="View(element)" class="tbl-action-btn">
+                                        <app-feather-icons [icon]="'eye'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                                    </button>
+                                </mat-cell>
+                            </ng-container>
+
+                            <mat-header-row *matHeaderRowDef="objectKeys(columnHeader)"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: objectKeys(columnHeader);"></mat-row>
+                        </mat-table>
+                        <div style="height: 70px;" [ngStyle]="{'display': showHeader ? 'block' : 'none'}">
+                            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0"
+                                [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+                            </mat-paginator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .pointer u {
+        text-decoration: none !important;
+        /* color: #36cbe9; */
+        font-weight: 900;
+    }
+
+    .windowLink {
+        /* color: #36cbe9; */
+        /* font-weight: bold; */
+        cursor: pointer;
+        margin: auto 0px;
+    }
+
+    .windowLink:hover {
+        text-decoration: underline;
+    }
+</style>

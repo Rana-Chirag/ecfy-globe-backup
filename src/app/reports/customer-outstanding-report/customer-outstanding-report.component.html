@@ -1,0 +1,8 @@
+<app-common-wrapper-webxpress [breadscrums]="breadScrums">
+     <form [formGroup]="CustOutTableForm">
+          <app-form-webxpress [form]="CustOutTableForm" [FormTitle]="'Customer Outstanding Register Report'" [formData]="jsonCustOutFormArray"
+               (functionCallEmitter)="functionCallHandler($event)" (callFunction)="functionCallHandler($event)"
+               [showSaveButton]="true" [submit]="'Download'">
+          </app-form-webxpress>
+     </form>
+</app-common-wrapper-webxpress>

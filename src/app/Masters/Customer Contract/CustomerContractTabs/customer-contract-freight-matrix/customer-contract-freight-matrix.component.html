@@ -1,0 +1,20 @@
+<form [formGroup]="FreightMatrixForm">
+    <app-form-webxpress [form]="FreightMatrixForm" [FormTitle]="'Freight Charge Matrix'"
+        [formData]="jsonControlArrayFreightMatrix" (functionCallEmitter)="functionCallHandler($event)"
+        [showSaveAndCancelButton]="false" (functionCallEmitter)="functionCallHandler($event)"
+        [EventButton]="FreightMatrixForm.valid==true ? EventButton : false" (callFunction)="functionCallHandler($event)"
+        [className]="className">
+    </app-form-webxpress>
+</form>
+
+<div *ngIf="isLoad" class="d-flex justify-content-center align-items-center">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+<app-generic-table-v2 *ngIf="tableLoad" [dynamicControls]="dynamicControls" [columnHeader]="columnHeader"
+    [tableData]="tableData" [menuItems]="menuItems" [staticField]="staticField" [Link]="linkArray"
+    (functionCallEmitter)="functionCallHandler($event)"
+    [menuItemFlag]="menuItemflag" (menuItemClicked)="handleMenuItemClick($event)" [uploadComponent]= true  (uploadEvent)="upload()">
+</app-generic-table-v2>

@@ -1,0 +1,34 @@
+<div *ngIf="!RakeEntry">
+<app-common-wrapper-webxpress [breadscrums]="breadScrums" [backPath]="backPath" [loadTable]="tableLoad">
+    <form [formGroup]="chaEntryTableForm">
+        <app-form-webxpress [form]="chaEntryTableForm" [formData]="chaEntryControlArray"
+            (functionCallEmitter)="functionCallHandler($event)" [FormTitle]="'CHA Entry'" [showSaveAndCancelButton]="false"
+            (functionCallEmitter)="functionCallHandler($event)"
+            (callFunction)="functionCallHandler($event)">
+        </app-form-webxpress>
+    </form>
+    <form [formGroup]="chaEntryTableForm">
+        <app-form-webxpress [form]="chaFormTableForm" [formData]="chaTableFormControl"
+            (functionCallEmitter)="functionCallHandler($event)"  (callFunction)="functionCallHandler($event)" [FormTitle]="'Document Details'" 
+            [EventButton]="buttons">
+        </app-form-webxpress>
+        <app-generic-table-v2 *ngIf="!tableLoadIn" [dynamicControls]="model.dynamicControls" [columnHeader]="model.columnHeader"
+        [tableData]="chaTableData" (selectAllClicked)="onSelectAllClicked($event)" [menuItems]="model.menuItems"
+        [staticField]="model.staticField" [Link]="linkArray" [height]="height" [width]="width" [maxWidth]="maxWidth"
+        [addAndEditPath]="addAndEditPath" [menuItemFlag]="menuItemflag" (menuItemClicked)="handleMenuItemClick($event)"
+        [addFlag]="addFlag" (addEmitter)="addPopUp($event)" [showHeader]=false>
+      </app-generic-table-v2>
+    </form>
+    
+   <div class="row">
+       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+           <div class="example-button-row  d-flex justify-content-end">
+
+               <button mat-button   (click)="cancel()">Back</button>
+               <button class="msr-3" mat-raised-button color="primary"
+                   (click)="save()">Save</button>
+           </div>
+       </div>  
+   </div>
+</app-common-wrapper-webxpress>
+</div>

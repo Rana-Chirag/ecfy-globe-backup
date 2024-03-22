@@ -1,0 +1,68 @@
+[
+    {
+        "FieldName": "aCCCD",
+        "Caption": "AccountCode"
+    },
+    {
+        "FieldName": "aCCNM",
+        "Caption": "AccountName"
+    },
+    {
+        "FieldName": "aCCCD",
+        "Caption": "Category"
+    },
+    {
+        "FieldName": "vNO",
+        "Caption": "Voucher No"
+    },
+    {
+        "FieldName": "eDT",
+        "Caption": "Date",
+        "DataType": "Date",
+        "Format": "DD MMM YYYY"
+    },
+    {
+        "FieldName": "dR",
+        "Caption": "Debit",
+        "DataType": "Number",
+        "Format": 2,
+        "Default": 0.00
+    },
+    {
+        "FieldName": "cR",
+        "Caption": "Credit",
+        "DataType": "Number",
+        "Format": 2,
+        "Default": 0.00
+    },
+    {
+        "FieldName": "pCODE",
+        "Caption": "PartyCode"
+    },
+    {
+        "FieldName": "pNAME",
+        "Caption": "PartyName"
+    },
+    {
+        "FieldName": "vNO",
+        "Caption": "Document No"
+    },
+    {
+        "FieldName": "nRT",
+        "Caption": "Narration"
+    },
+    {
+        "FieldName": "rNO",
+        "Caption": "Cheque No"
+    },
+    {
+        "FieldName": "dT",
+        "Caption": "Cheque Date",
+        "DataType": "Date",
+        "Format": "DD MMM YYYY"
+    },
+    {
+        "FieldName": "lOC",
+        "Caption": "LocName"
+    }
+]

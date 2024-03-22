@@ -1,0 +1,75 @@
+<div class="container-fluid p-0">
+  <div class="row g-0">
+    <div class="col-lg-4" style="border-right: 1px solid #b3b3b3;">
+      <div class="auth-content p-4 d-flex align-items-center min-vh-100">
+        <div class="w-100">
+          <div class="row justify-content-center">
+            <div class="col-lg-9">
+              <div>
+                <div class="text-center">
+                  <div class="preloader pl-size-sm" *ngIf="Islogin==true">
+                    <div class="spinner-layer pl-purple">
+                      <div class="circle-clipper left">
+                        <div class="circle"></div>
+                      </div>
+                      <div class="circle-clipper right">
+                        <div class="circle"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div>
+                    <a routerLink="" class="logo-full"><img src="assets/images/banner/DMS.jpg" alt="logo-full"></a>
+                  </div> -->
+                  <div>
+                    <a routerLink="" class="logo-full"><img class="loginimage" [src]="logingLogo"
+                        alt="logo-full">
+                      <!-- <img [src]="CompanyLogo" height="80px" width="200px"  alt="logo-full"> -->
+                    </a>
+                  </div>
+
+                  <h4 class="font-20 mt-4">Welcome Back !</h4>
+                  <p class="text-muted">Sign in to continue.</p>
+                </div>
+
+                <div class="p-2 mt-5">
+                  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <div *ngIf="error" class="alert alert-danger mb-3 mt-0">{{error}}</div>
+                    <div class="form-group auth-form-group mb-4">
+                      <mat-icon matSuffix class="auth-page-icon">Username</mat-icon>
+                      <input type="Username" formControlName="username"  class="form-control auth-control" id="username"
+                        placeholder="User Name"  [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                      <div *ngIf="submitted && f.username.errors" class="invalid-feedback">Username is required
+                      </div>
+                    </div>
+                    <div class="form-group auth-form-group mb-4">
+                      <div class="input-with-icon">
+                        <mat-icon class="auth-page-icon" (click)="hide = !hide">{{ hide ? 'visibility_off' :
+                          'visibility' }}</mat-icon>
+                        <input [type]="hide ? 'password' : 'text'" formControlName="password" 
+                          class="form-control auth-control" id="password"
+                          [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Password" />
+                      </div>
+                      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                      </div>
+                    </div>
+                    <div class="container-login100-form-btn">
+                      <button mat-flat-button color="primary" class="login100-form-btn" type="submit">
+                        Login
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="auth-bg">
+        <div class="bg-overlay"></div>
+      </div>
+    </div>
+  </div>
+</div>
